@@ -49,8 +49,10 @@ export function Testimonials() {
                 </div>
                 <p className="mt-4 text-foreground">&ldquo;{t.quote}&rdquo;</p>
                 <div className="mt-6 flex items-center gap-3">
-                  <Avatar className="h-10 w-10 bg-primary text-primary-foreground">
-                    <AvatarFallback>{t.initials}</AvatarFallback>
+                  <Avatar className="h-10 w-10">
+                    <AvatarFallback className="bg-primary text-sm font-semibold text-primary-foreground">
+                      {t.initials}
+                    </AvatarFallback>
                   </Avatar>
                   <div>
                     <p className="text-sm font-semibold text-foreground">{t.author}</p>
