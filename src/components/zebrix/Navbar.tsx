@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ZebrixLogo } from './ZebrixLogo';
-import { Language } from '../types';
-import { translations } from '../data/translations';
+import { Language } from '../../types';
+import { translations } from '../../data/translations';
 import { Menu, X, ArrowRight, ShieldCheck, Globe } from 'lucide-react';
 
 interface NavbarProps {

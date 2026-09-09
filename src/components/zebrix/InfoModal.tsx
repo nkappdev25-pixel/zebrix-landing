@@ -1,5 +1,5 @@
 import React from 'react';
-import { Language } from '../types';
+import { Language } from '../../types';
 import { X, ShieldCheck, Lock, AlertCircle } from 'lucide-react';
 import { ZebrixLogo } from './ZebrixLogo';
 

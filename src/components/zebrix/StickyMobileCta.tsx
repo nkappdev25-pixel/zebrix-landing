@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Language } from '../types';
-import { translations } from '../data/translations';
+import { Language } from '../../types';
+import { translations } from '../../data/translations';
 import { ArrowRight, X } from 'lucide-react';
 
 interface StickyMobileCtaProps {

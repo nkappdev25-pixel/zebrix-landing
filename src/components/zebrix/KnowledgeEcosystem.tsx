@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Language, KnowledgeItem } from '../types';
-import { translations } from '../data/translations';
+import { Language, KnowledgeItem } from '../../types';
+import { translations } from '../../data/translations';
 import {
   BookOpen,
   Building2,

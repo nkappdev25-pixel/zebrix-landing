@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Language } from '../types';
-import { translations } from '../data/translations';
+import { Language } from '../../types';
+import { translations } from '../../data/translations';
 import { X, ShieldAlert, CheckCircle2, ArrowRight, Lock, Sparkles } from 'lucide-react';
 import { ZebrixLogo } from './ZebrixLogo';
 

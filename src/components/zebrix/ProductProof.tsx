@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Language, ProductProofTab } from '../types';
-import { translations } from '../data/translations';
+import { Language, ProductProofTab } from '../../types';
+import { translations } from '../../data/translations';
 import {
   MessageSquare,
   Route,

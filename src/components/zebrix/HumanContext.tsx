@@ -1,6 +1,6 @@
 import React from 'react';
-import { Language } from '../types';
-import { translations } from '../data/translations';
+import { Language } from '../../types';
+import { translations } from '../../data/translations';
 import { Check, Sparkles, HeartHandshake, NotebookPen } from 'lucide-react';
 
 interface HumanContextProps {

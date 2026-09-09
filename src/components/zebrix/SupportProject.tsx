@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Language, UserRole } from '../types';
-import { translations } from '../data/translations';
+import { Language, UserRole } from '../../types';
+import { translations } from '../../data/translations';
 import { Heart, Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 
 interface SupportProjectProps {

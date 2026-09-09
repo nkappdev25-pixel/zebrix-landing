@@ -1,6 +1,6 @@
 import React from 'react';
-import { Language } from '../types';
-import { translations } from '../data/translations';
+import { Language } from '../../types';
+import { translations } from '../../data/translations';
 import { ArrowRight, Shield } from 'lucide-react';
 import { ZebrixLogo } from './ZebrixLogo';
 
