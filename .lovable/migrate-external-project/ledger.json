@@ -1,0 +1,10 @@
+[
+  {"capability": "landing page UI (10 sections + modals)", "source": "github repo src/", "outcome": "preserve", "status": "verified", "next_action": "none"},
+  {"capability": "PL/EN translations", "source": "src/data/translations.ts", "outcome": "preserve", "status": "verified", "next_action": "none"},
+  {"capability": "glass CSS utilities", "source": "src/index.css", "outcome": "preserve", "status": "verified", "next_action": "none"},
+  {"capability": "logo/favicon assets", "source": "public/logo/", "outcome": "preserve", "status": "verified", "next_action": "none"},
+  {"capability": "database/schema", "source": "none detected", "outcome": "absent", "status": "done", "next_action": "none"},
+  {"capability": "records", "source": "none detected", "outcome": "absent", "status": "done", "next_action": "none"},
+  {"capability": "authentication", "source": "UI-only email modal, no backend", "outcome": "preserve as UI placeholder", "status": "verified", "next_action": "none"},
+  {"capability": "Gemini AI (server-side)", "source": "metadata.json capability only, no call sites in src", "outcome": "absent", "status": "done", "next_action": "none"}
+]
