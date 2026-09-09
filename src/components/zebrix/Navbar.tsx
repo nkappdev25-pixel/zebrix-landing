@@ -7,14 +7,12 @@ import { Menu, X, ArrowRight, ShieldCheck, Globe } from 'lucide-react';
 interface NavbarProps {
   lang: Language;
   onLanguageChange: (lang: Language) => void;
-  onStartAnalysis: () => void;
   onSignIn: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   lang,
   onLanguageChange,
-  onStartAnalysis,
   onSignIn,
 }) => {
   const t = translations[lang].nav;
@@ -139,13 +137,13 @@ export const Navbar: React.FC<NavbarProps> = ({
               {t.signIn}
             </button>
 
-            {/* Primary CTA */}
+            {/* Primary CTA - redirect to app */}
             <button
               type="button"
-              onClick={onStartAnalysis}
+              onClick={() => window.open('https://app.zebrixgen.com', '_blank')}
               className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold bg-[#4F46E5] hover:bg-[#3730A3] active:bg-[#312E81] text-white px-4 py-2 sm:px-4.5 sm:py-2 rounded-full shadow-xs hover:shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4F46E5] focus-visible:ring-offset-2"
             >
-              <span>{t.cta}</span>
+              <span>{t.signIn}</span>
               <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
             </button>
 
@@ -229,11 +227,11 @@ export const Navbar: React.FC<NavbarProps> = ({
                 type="button"
                 onClick={() => {
                   setMobileMenuOpen(false);
-                  onStartAnalysis();
+                  window.open('https://app.zebrixgen.com', '_blank');
                 }}
                 className="w-full flex items-center justify-center gap-2 py-3 text-sm font-semibold text-white bg-[#4F46E5] hover:bg-[#3730A3] rounded-xl shadow-xs"
               >
-                <span>{t.cta}</span>
+                <span>{t.signIn}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>

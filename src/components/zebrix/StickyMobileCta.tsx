@@ -5,12 +5,10 @@ import { ArrowRight, X } from 'lucide-react';
 
 interface StickyMobileCtaProps {
   lang: Language;
-  onStartAnalysis: () => void;
 }
 
 export const StickyMobileCta: React.FC<StickyMobileCtaProps> = ({
   lang,
-  onStartAnalysis,
 }) => {
   const t = translations[lang].nav;
   const [isVisible, setIsVisible] = useState(false);
@@ -42,10 +40,10 @@ export const StickyMobileCta: React.FC<StickyMobileCtaProps> = ({
       <div className="bg-[#0F1F3D] text-white p-3 rounded-2xl shadow-xl flex items-center justify-between gap-3 border border-white/10">
         <button
           type="button"
-          onClick={onStartAnalysis}
+          onClick={() => window.open('https://app.zebrixgen.com', '_blank')}
           className="flex-1 flex items-center justify-center gap-2 bg-[#4F46E5] hover:bg-[#3730A3] py-2.5 px-4 rounded-xl text-xs font-semibold text-white shadow-xs cursor-pointer"
         >
-          <span>{t.cta}</span>
+          <span>{t.signIn}</span>
           <ArrowRight className="w-3.5 h-3.5" />
         </button>
 

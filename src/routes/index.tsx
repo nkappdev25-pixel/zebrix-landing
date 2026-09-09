@@ -84,7 +84,6 @@ function LandingPage() {
       <Navbar
         lang={lang}
         onLanguageChange={setLang}
-        onStartAnalysis={handleStartAnalysis}
         onSignIn={handleSignIn}
       />
 
@@ -103,8 +102,6 @@ function LandingPage() {
         <SupportProject lang={lang} />
         <FinalCta
           lang={lang}
-          onStartAnalysis={handleStartAnalysis}
-          onSignIn={handleSignIn}
         />
       </main>
 
@@ -125,7 +122,7 @@ function LandingPage() {
         onClose={() => setActiveInfoModal(null)}
         lang={lang}
       />
-      <StickyMobileCta lang={lang} onStartAnalysis={handleStartAnalysis} />
+      <StickyMobileCta lang={lang} />
     </div>
   );
 }

@@ -253,10 +253,8 @@ export const translations = {
       errorText: 'Coś poszło nie tak. Prosimy sprawdzić poprawność adresu e-mail i spróbować ponownie.',
     },
     finalCta: {
-      title: 'Zacznij od tego, co już wiesz.',
       body: 'Opisz swoje obserwacje. Zebrix pomoże nadać im strukturę i przygotować następny krok.',
-      primaryCta: 'Rozpocznij analizę',
-      secondaryCta: 'Mam już konto — zaloguj się',
+      primaryCta: 'Wypróbuj sam',
     },
     footer: {
       productLine: 'Zebrix pomaga rodzinom uporządkować obserwacje i przygotować się do rozmowy ze specjalistą.',
@@ -539,10 +537,8 @@ export const translations = {
       errorText: 'Something went wrong. Please check your email address and try again.',
     },
     finalCta: {
-      title: 'Begin with what you already know.',
       body: 'Describe your observations. Zebrix helps give them structure and prepare the next step.',
-      primaryCta: 'Start an analysis',
-      secondaryCta: 'I already have an account — sign in',
+      primaryCta: 'Try it yourself',
     },
     footer: {
       productLine: 'Zebrix helps families organise observations and prepare for a conversation with a specialist.',
