@@ -30,6 +30,7 @@ const META = {
 } as const;
 
 export const Route = createFileRoute("/")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: META.pl.title },
