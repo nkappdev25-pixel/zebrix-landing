@@ -23,9 +23,9 @@ export const KnowledgeEcosystem: React.FC<KnowledgeEcosystemProps> = ({
   onSelectResource,
 }) => {
   const t = translations[lang].knowledge;
-  const [activeItemId, setActiveItemId] = useState<string>(t.items[0].id);
+  const [activeItemId, setActiveItemId] = useState<string>(t.items[0]!.id);
 
-  const activeItem = t.items.find((item) => item.id === activeItemId) || t.items[0];
+  const activeItem = t.items.find((item) => item.id === activeItemId) || t.items[0]!;
 
   const getIcon = (iconName: string) => {
     switch (iconName) {

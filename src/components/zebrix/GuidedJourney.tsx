@@ -27,7 +27,7 @@ export const GuidedJourney: React.FC<GuidedJourneyProps> = ({
   const t = translations[lang].journey;
   const [activeStepIndex, setActiveStepIndex] = useState(0);
 
-  const activeStep = t.steps[activeStepIndex];
+  const activeStep = t.steps[activeStepIndex]!;
 
   return (
     <section

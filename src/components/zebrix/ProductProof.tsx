@@ -23,7 +23,7 @@ export const ProductProof: React.FC<ProductProofProps> = ({
 }) => {
   const t = translations[lang].productProof;
   const [activeTab, setActiveTab] = useState<ProductProofTab>('conversation');
-  const [selectedChip, setSelectedChip] = useState<string>(t.choices[0]);
+  const [selectedChip, setSelectedChip] = useState<string>(t.choices[0]!);
 
   return (
     <section
