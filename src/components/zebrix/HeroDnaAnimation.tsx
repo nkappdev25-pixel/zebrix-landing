@@ -14,7 +14,7 @@ export const HeroDnaAnimation: React.FC = () => {
       <div className="absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-[#F6F8FD] to-transparent z-20" />
       
       {/* Tilted DNA wave container */}
-      <div className="absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-5 sm:gap-7 transform -rotate-[12deg] scale-105 w-[120%] justify-center opacity-85">
+      <div className="absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-5 sm:gap-7 transform -rotate-[12deg] scale-105 w-full max-w-[800px] justify-center opacity-85">
         {strands.map((_, i) => (
           <div key={i} className="relative w-px h-[260px] flex flex-col items-center shrink-0">
             {/* Connecting Base Pair Line */}

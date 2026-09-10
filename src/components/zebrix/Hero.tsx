@@ -30,15 +30,15 @@ export const Hero: React.FC<HeroProps> = ({
 
   return (
     <section
-      className="relative pt-28 pb-16 md:pt-36 md:pb-24 lg:pt-40 lg:pb-28 overflow-hidden"
+      className="relative pt-20 pb-12 md:pt-36 md:pb-24 lg:pt-40 lg:pb-28 overflow-hidden"
       aria-labelledby="hero-heading"
     >
       <HeroDnaAnimation />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Editorial Column (Left 7 cols on large desktop) */}
-          <div className="lg:col-span-6 xl:col-span-6 space-y-6">
+          <div className="lg:col-span-6 xl:col-span-6 space-y-5">
             {/* Eyebrow badge */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#E7ECFB] border border-[#4F46E5]/15 text-[#4F46E5] text-xs font-semibold tracking-wide">
               <span className="w-1.5 h-1.5 rounded-full bg-[#4F46E5] animate-pulse" />
@@ -86,16 +86,16 @@ export const Hero: React.FC<HeroProps> = ({
             </div>
           </div>
 
-          {/* High-Fidelity Real Product Composition (Right 6 cols) */}
-          <div className="lg:col-span-6 xl:col-span-6 relative">
-            {/* Ambient decorative single-stroke background trace */}
-            <div
-              className="absolute -top-6 -right-6 w-full h-full border border-[#4F46E5]/10 rounded-3xl pointer-events-none -z-10"
-              aria-hidden="true"
-            />
+{/* High-Fidelity Real Product Composition (Right 6 cols) */}
+           <div className="lg:col-span-6 xl:col-span-6 relative">
+             {/* Ambient decorative single-stroke background trace */}
+             <div
+               className="absolute -top-6 -right-6 w-full h-full border border-[#4F46E5]/10 rounded-3xl pointer-events-none -z-10 max-w-lg lg:max-w-none"
+               aria-hidden="true"
+             />
 
-            {/* Elevated Product Window Shell */}
-            <div className="glass-product rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-white/80 transition-all duration-300">
+             {/* Elevated Product Window Shell */}
+             <div className="glass-product rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-white/80 transition-all duration-300 max-w-lg mx-auto lg:max-w-none">
               {/* Product Window Header */}
               <div className="flex items-center justify-between pb-4 border-b border-black/[0.06] mb-4">
                 <div className="flex items-center gap-2">
