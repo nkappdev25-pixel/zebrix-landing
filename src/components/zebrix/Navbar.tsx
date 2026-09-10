@@ -7,13 +7,11 @@ import { Menu, X, ArrowRight, ShieldCheck, Globe } from 'lucide-react';
 interface NavbarProps {
   lang: Language;
   onLanguageChange: (lang: Language) => void;
-  onSignIn: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   lang,
   onLanguageChange,
-  onSignIn,
 }) => {
   const t = translations[lang].nav;
   const [isScrolled, setIsScrolled] = useState(false);
@@ -128,15 +126,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               </button>
             </div>
 
-            {/* Sign In link */}
-            <button
-              type="button"
-              onClick={onSignIn}
-              className="hidden sm:inline-flex text-sm font-medium text-[#0F1F3D]/80 hover:text-[#0F1F3D] px-3 py-1.5 rounded-full hover:bg-black/[0.03] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4F46E5]"
-            >
-              {t.signIn}
-            </button>
-
             {/* Primary CTA - redirect to app */}
             <button
               type="button"
@@ -213,16 +202,6 @@ export const Navbar: React.FC<NavbarProps> = ({
             </nav>
 
             <div className="pt-2 border-t border-black/[0.06] flex flex-col gap-2">
-              <button
-                type="button"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onSignIn();
-                }}
-                className="w-full text-center py-2.5 text-sm font-medium text-[#0F1F3D] bg-black/[0.03] hover:bg-black/[0.06] rounded-xl"
-              >
-                {t.signIn}
-              </button>
               <button
                 type="button"
                 onClick={() => {

@@ -84,7 +84,6 @@ function LandingPage() {
       <Navbar
         lang={lang}
         onLanguageChange={setLang}
-        onSignIn={handleSignIn}
       />
 
       <main id="main-content" className="flex-grow">
