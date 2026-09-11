@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://zebrix-landing.lovable.app/sitemap.xml
+Sitemap: https://zebrixgen.com/sitemap.xml
