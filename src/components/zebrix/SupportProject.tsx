@@ -212,6 +212,24 @@ export const SupportProject: React.FC<SupportProjectProps> = ({ lang, scheduling
                     )}
                   </div>
 
+                  {/* Organisation field */}
+                  <div className="space-y-1.5">
+                    <label
+                      htmlFor="interest-organisation"
+                      className="block text-xs font-semibold text-[#0F1F3D]"
+                    >
+                      {t.organisationLabel}
+                    </label>
+                    <input
+                      id="interest-organisation"
+                      type="text"
+                      value={organisation}
+                      onChange={(e) => setOrganisation(e.target.value)}
+                      placeholder={t.organisationPlaceholder}
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-black/[0.12] bg-[#F6F8FD] text-sm text-[#0F1F3D] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#4F46E5] transition-all"
+                    />
+                  </div>
+
                   {/* Role Radio Group */}
                   <div className="space-y-2 pt-1">
                     <span className="block text-xs font-semibold text-[#0F1F3D]">
@@ -247,6 +265,29 @@ export const SupportProject: React.FC<SupportProjectProps> = ({ lang, scheduling
                       })}
                     </div>
                   </div>
+
+                  {/* Meeting opt-in */}
+                  <label
+                    htmlFor="interest-meeting"
+                    className="flex items-start gap-3 p-3.5 rounded-xl border border-[#4F46E5]/20 bg-[#E7ECFB]/50 cursor-pointer"
+                  >
+                    <input
+                      id="interest-meeting"
+                      type="checkbox"
+                      checked={wantsMeeting}
+                      onChange={(e) => setWantsMeeting(e.target.checked)}
+                      className="mt-0.5 w-4 h-4 accent-[#4F46E5] cursor-pointer"
+                    />
+                    <span className="space-y-0.5">
+                      <span className="flex items-center gap-1.5 text-xs font-semibold text-[#0F1F3D]">
+                        <CalendarDays className="w-3.5 h-3.5 text-[#4F46E5]" />
+                        {t.meetingLabel}
+                      </span>
+                      <span className="block text-xs text-[#0F1F3D]/60 leading-relaxed">
+                        {t.meetingHint}
+                      </span>
+                    </span>
+                  </label>
 
                   {/* Experience Textarea */}
                   <div className="space-y-1.5 pt-1">
