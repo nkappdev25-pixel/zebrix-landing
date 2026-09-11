@@ -9,7 +9,7 @@ import { EmailChangeEmail } from '@/lib/email-templates/email-change'
 import { ReauthenticationEmail } from '@/lib/email-templates/reauthentication'
 
 // Configuration
-const SITE_NAME = "zebrix-landing"
+const SITE_NAME = "ZebrixGen"
 const SENDER_DOMAIN = "notify.zebrixgen.com"
 const ROOT_DOMAIN = "zebrixgen.com"
 const FROM_DOMAIN = "notify.zebrixgen.com"
