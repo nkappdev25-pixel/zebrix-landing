@@ -1,19 +1,27 @@
 import React, { useState } from 'react';
+import { useServerFn } from '@tanstack/react-start';
 import { Language, UserRole } from '../../types';
 import { translations } from '../../data/translations';
-import { Heart, Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { Heart, Send, CheckCircle2, AlertCircle, Loader2, CalendarDays } from 'lucide-react';
+import { submitLead } from '../../lib/leads.functions';
+import { CalendlyInline } from './CalendlyInline';
 
 interface SupportProjectProps {
   lang: Language;
+  schedulingUrl: string;
 }
 
-export const SupportProject: React.FC<SupportProjectProps> = ({ lang }) => {
+export const SupportProject: React.FC<SupportProjectProps> = ({ lang, schedulingUrl }) => {
   const t = translations[lang].supportProject;
+  const sendLead = useServerFn(submitLead);
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [organisation, setOrganisation] = useState('');
   const [role, setRole] = useState<UserRole>('parent');
   const [experience, setExperience] = useState('');
+  const [wantsMeeting, setWantsMeeting] = useState(false);
+  const [bookedMeeting, setBookedMeeting] = useState(false);
 
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [emailError, setEmailError] = useState('');
@@ -32,24 +40,30 @@ export const SupportProject: React.FC<SupportProjectProps> = ({ lang }) => {
     return true;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateEmail(email)) {
       return;
     }
 
     setStatus('submitting');
-    setTimeout(() => {
-      // Store in local storage for simulation
-      try {
-        const saved = JSON.parse(localStorage.getItem('zebrix_interest_list') || '[]');
-        saved.push({ name, email, role, experience, date: new Date().toISOString() });
-        localStorage.setItem('zebrix_interest_list', JSON.stringify(saved));
-        setStatus('success');
-      } catch {
-        setStatus('error');
-      }
-    }, 850);
+    try {
+      await sendLead({
+        data: {
+          name,
+          email,
+          organisation,
+          role,
+          message: experience,
+          wantsMeeting,
+          lang,
+        },
+      });
+      setBookedMeeting(wantsMeeting);
+      setStatus('success');
+    } catch {
+      setStatus('error');
+    }
   };
 
   return (
