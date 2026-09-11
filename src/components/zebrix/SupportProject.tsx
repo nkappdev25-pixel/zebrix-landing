@@ -1,19 +1,27 @@
 import React, { useState } from 'react';
+import { useServerFn } from '@tanstack/react-start';
 import { Language, UserRole } from '../../types';
 import { translations } from '../../data/translations';
-import { Heart, Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { Heart, Send, CheckCircle2, AlertCircle, Loader2, CalendarDays } from 'lucide-react';
+import { submitLead } from '../../lib/leads.functions';
+import { CalendlyInline } from './CalendlyInline';
 
 interface SupportProjectProps {
   lang: Language;
+  schedulingUrl: string;
 }
 
-export const SupportProject: React.FC<SupportProjectProps> = ({ lang }) => {
+export const SupportProject: React.FC<SupportProjectProps> = ({ lang, schedulingUrl }) => {
   const t = translations[lang].supportProject;
+  const sendLead = useServerFn(submitLead);
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [organisation, setOrganisation] = useState('');
   const [role, setRole] = useState<UserRole>('parent');
   const [experience, setExperience] = useState('');
+  const [wantsMeeting, setWantsMeeting] = useState(false);
+  const [bookedMeeting, setBookedMeeting] = useState(false);
 
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [emailError, setEmailError] = useState('');
@@ -32,24 +40,30 @@ export const SupportProject: React.FC<SupportProjectProps> = ({ lang }) => {
     return true;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateEmail(email)) {
       return;
     }
 
     setStatus('submitting');
-    setTimeout(() => {
-      // Store in local storage for simulation
-      try {
-        const saved = JSON.parse(localStorage.getItem('zebrix_interest_list') || '[]');
-        saved.push({ name, email, role, experience, date: new Date().toISOString() });
-        localStorage.setItem('zebrix_interest_list', JSON.stringify(saved));
-        setStatus('success');
-      } catch {
-        setStatus('error');
-      }
-    }, 850);
+    try {
+      await sendLead({
+        data: {
+          name,
+          email,
+          organisation,
+          role,
+          message: experience,
+          wantsMeeting,
+          lang,
+        },
+      });
+      setBookedMeeting(wantsMeeting);
+      setStatus('success');
+    } catch {
+      setStatus('error');
+    }
   };
 
   return (
@@ -96,33 +110,49 @@ export const SupportProject: React.FC<SupportProjectProps> = ({ lang }) => {
             {/* Right Column (7 cols): Accessible Form */}
             <div className="lg:col-span-7 bg-white rounded-2xl p-6 sm:p-8 border border-black/[0.06] shadow-xs">
               {status === 'success' ? (
-                <div
-                  className="text-center py-8 space-y-4"
-                  tabIndex={-1}
-                  role="status"
-                  aria-live="polite"
-                >
-                  <div className="w-12 h-12 rounded-full bg-[#14B8A6]/15 text-[#0F766E] flex items-center justify-center mx-auto">
-                    <CheckCircle2 className="w-7 h-7 text-[#14B8A6]" />
+                <div className="py-4 space-y-5" tabIndex={-1} role="status" aria-live="polite">
+                  <div className="text-center space-y-4">
+                    <div className="w-12 h-12 rounded-full bg-[#14B8A6]/15 text-[#0F766E] flex items-center justify-center mx-auto">
+                      <CheckCircle2 className="w-7 h-7 text-[#14B8A6]" />
+                    </div>
+                    <h3 className="text-xl font-bold text-[#0F1F3D]">
+                      {t.successTitle}
+                    </h3>
+                    <p className="text-sm text-[#0F1F3D]/70 max-w-md mx-auto leading-relaxed">
+                      {t.successBody}
+                    </p>
                   </div>
-                  <h3 className="text-xl font-bold text-[#0F1F3D]">
-                    {t.successTitle}
-                  </h3>
-                  <p className="text-sm text-[#0F1F3D]/70 max-w-md mx-auto leading-relaxed">
-                    {t.successBody}
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setStatus('idle');
-                      setEmail('');
-                      setName('');
-                      setExperience('');
-                    }}
-                    className="inline-flex text-xs font-semibold text-[#4F46E5] hover:underline pt-2 cursor-pointer"
-                  >
-                    Dodaj kolejną opinię lub kontakt
-                  </button>
+
+                  {bookedMeeting && (
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-2 text-sm font-bold text-[#0F1F3D]">
+                        <CalendarDays className="w-4 h-4 text-[#4F46E5]" />
+                        <span>{t.meetingTitle}</span>
+                      </div>
+                      <p className="text-xs text-[#0F1F3D]/65 leading-relaxed">
+                        {t.meetingBody}
+                      </p>
+                      <CalendlyInline url={schedulingUrl} />
+                    </div>
+                  )}
+
+                  <div className="text-center">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setStatus('idle');
+                        setEmail('');
+                        setName('');
+                        setOrganisation('');
+                        setExperience('');
+                        setWantsMeeting(false);
+                        setBookedMeeting(false);
+                      }}
+                      className="inline-flex text-xs font-semibold text-[#4F46E5] hover:underline pt-2 cursor-pointer"
+                    >
+                      {lang === 'pl' ? 'Dodaj kolejną opinię lub kontakt' : 'Add another response or contact'}
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} noValidate className="space-y-4">
@@ -182,6 +212,24 @@ export const SupportProject: React.FC<SupportProjectProps> = ({ lang }) => {
                     )}
                   </div>
 
+                  {/* Organisation field */}
+                  <div className="space-y-1.5">
+                    <label
+                      htmlFor="interest-organisation"
+                      className="block text-xs font-semibold text-[#0F1F3D]"
+                    >
+                      {t.organisationLabel}
+                    </label>
+                    <input
+                      id="interest-organisation"
+                      type="text"
+                      value={organisation}
+                      onChange={(e) => setOrganisation(e.target.value)}
+                      placeholder={t.organisationPlaceholder}
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-black/[0.12] bg-[#F6F8FD] text-sm text-[#0F1F3D] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#4F46E5] transition-all"
+                    />
+                  </div>
+
                   {/* Role Radio Group */}
                   <div className="space-y-2 pt-1">
                     <span className="block text-xs font-semibold text-[#0F1F3D]">
@@ -217,6 +265,29 @@ export const SupportProject: React.FC<SupportProjectProps> = ({ lang }) => {
                       })}
                     </div>
                   </div>
+
+                  {/* Meeting opt-in */}
+                  <label
+                    htmlFor="interest-meeting"
+                    className="flex items-start gap-3 p-3.5 rounded-xl border border-[#4F46E5]/20 bg-[#E7ECFB]/50 cursor-pointer"
+                  >
+                    <input
+                      id="interest-meeting"
+                      type="checkbox"
+                      checked={wantsMeeting}
+                      onChange={(e) => setWantsMeeting(e.target.checked)}
+                      className="mt-0.5 w-4 h-4 accent-[#4F46E5] cursor-pointer"
+                    />
+                    <span className="space-y-0.5">
+                      <span className="flex items-center gap-1.5 text-xs font-semibold text-[#0F1F3D]">
+                        <CalendarDays className="w-3.5 h-3.5 text-[#4F46E5]" />
+                        {t.meetingLabel}
+                      </span>
+                      <span className="block text-xs text-[#0F1F3D]/60 leading-relaxed">
+                        {t.meetingHint}
+                      </span>
+                    </span>
+                  </label>
 
                   {/* Experience Textarea */}
                   <div className="space-y-1.5 pt-1">

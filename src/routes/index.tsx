@@ -12,9 +12,9 @@ import { SafetyTrust } from "../components/zebrix/SafetyTrust";
 import { SupportProject } from "../components/zebrix/SupportProject";
 import { FinalCta } from "../components/zebrix/FinalCta";
 import { Footer } from "../components/zebrix/Footer";
-import { AnalysisModal } from "../components/zebrix/AnalysisModal";
 import { InfoModal } from "../components/zebrix/InfoModal";
 import { StickyMobileCta } from "../components/zebrix/StickyMobileCta";
+import { getSchedulingUrl } from "../lib/calendly.functions";
 
 const META = {
   pl: {
@@ -31,6 +31,17 @@ const META = {
 
 export const Route = createFileRoute("/")({
   staticData: { sitemap: true },
+  loader: () => getSchedulingUrl(),
+  errorComponent: () => (
+    <div className="min-h-screen flex items-center justify-center p-6 text-center text-[#0F1F3D]">
+      <p>Coś poszło nie tak. Odśwież stronę.</p>
+    </div>
+  ),
+  notFoundComponent: () => (
+    <div className="min-h-screen flex items-center justify-center p-6 text-center text-[#0F1F3D]">
+      <p>Nie znaleziono strony.</p>
+    </div>
+  ),
   head: () => ({
     meta: [
       { title: META.pl.title },
@@ -45,9 +56,8 @@ export const Route = createFileRoute("/")({
 });
 
 function LandingPage() {
+  const { url: schedulingUrl } = Route.useLoaderData();
   const [lang, setLang] = useState<Language>("pl");
-  const [isAnalysisModalOpen, setIsAnalysisModalOpen] = useState(false);
-  const [modalInitialMode, setModalInitialMode] = useState<"start" | "signin">("start");
   const [activeInfoModal, setActiveInfoModal] = useState<string | null>(null);
 
   // Restore saved language after hydration
@@ -65,14 +75,8 @@ function LandingPage() {
     if (metaDesc) metaDesc.setAttribute("content", META[lang].description);
   }, [lang]);
 
-  const handleStartAnalysis = () => {
-    setModalInitialMode("start");
-    setIsAnalysisModalOpen(true);
-  };
-
-  const handleSignIn = () => {
-    setModalInitialMode("signin");
-    setIsAnalysisModalOpen(true);
+  const scrollToInterestList = () => {
+    document.getElementById("support-project")?.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleExploreHowItWorks = () => {
@@ -89,16 +93,16 @@ function LandingPage() {
       <main id="main-content" className="flex-grow">
         <Hero
           lang={lang}
-          onStartAnalysis={handleStartAnalysis}
+          onStartAnalysis={scrollToInterestList}
           onExploreHowItWorks={handleExploreHowItWorks}
         />
         <HumanContext lang={lang} />
-        <GuidedJourney lang={lang} onStartAnalysis={handleStartAnalysis} />
-        <ProductProof lang={lang} onStartAnalysis={handleStartAnalysis} />
-        <KnowledgeEcosystem lang={lang} onSelectResource={handleStartAnalysis} />
-        <PersonalWorkspace lang={lang} onOpenWorkspace={handleSignIn} />
+        <GuidedJourney lang={lang} onStartAnalysis={scrollToInterestList} />
+        <ProductProof lang={lang} onStartAnalysis={scrollToInterestList} />
+        <KnowledgeEcosystem lang={lang} onSelectResource={scrollToInterestList} />
+        <PersonalWorkspace lang={lang} onOpenWorkspace={scrollToInterestList} />
         <SafetyTrust lang={lang} />
-        <SupportProject lang={lang} />
+        <SupportProject lang={lang} schedulingUrl={schedulingUrl} />
         <FinalCta
           lang={lang}
         />
@@ -110,12 +114,6 @@ function LandingPage() {
         onOpenInfoModal={(type) => setActiveInfoModal(type)}
       />
 
-      <AnalysisModal
-        isOpen={isAnalysisModalOpen}
-        onClose={() => setIsAnalysisModalOpen(false)}
-        lang={lang}
-        initialMode={modalInitialMode}
-      />
       <InfoModal
         type={activeInfoModal}
         onClose={() => setActiveInfoModal(null)}
