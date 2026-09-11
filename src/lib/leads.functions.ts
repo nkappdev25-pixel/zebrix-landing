@@ -61,5 +61,24 @@ export const submitLead = createServerFn({ method: "POST" })
       throw new Error("save_failed");
     }
 
+    try {
+      const { sendTemplateEmail } = await import("@/lib/email-templates/send-email");
+      await sendTemplateEmail("lead-notification", "", {
+        templateData: {
+          name: data.name || "—",
+          email: data.email,
+          organisation: data.organisation || "—",
+          role: data.role,
+          message: data.message || "—",
+          wantsMeeting: data.wantsMeeting,
+          lang: data.lang,
+        },
+        replyTo: data.email,
+        idempotencyKey: `lead-notification-${data.email}-${Date.now()}`,
+      });
+    } catch (notifyError) {
+      console.error("lead notification email failed", notifyError);
+    }
+
     return { ok: true as const };
   });
