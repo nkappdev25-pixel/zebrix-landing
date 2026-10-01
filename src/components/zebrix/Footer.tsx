@@ -69,7 +69,7 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         <div className="relative overflow-hidden border-b border-zebrix-navy/10 h-20 sm:h-32 md:h-44" aria-hidden="true">
-          <span className="absolute inset-x-0 -bottom-8 sm:-bottom-14 md:-bottom-20 text-center text-[7rem] sm:text-[12rem] md:text-[18rem] font-extrabold leading-none text-zebrix-navy/5 select-none" style={{ fontFamily: 'Sora, Manrope, sans-serif' }}>ZEBRIX</span>
+          <span className="absolute inset-x-0 -bottom-8 sm:-bottom-14 md:-bottom-20 text-center text-[7rem] sm:text-[12rem] md:text-[18rem] font-extrabold font-[Sora] leading-none text-zebrix-navy/5 select-none">ZEBRIX</span>
         </div>
 
         <div className="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 text-xs text-zebrix-navy/60">
