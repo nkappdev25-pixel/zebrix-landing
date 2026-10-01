@@ -19,7 +19,7 @@ export const Footer: React.FC<FooterProps> = ({
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#0F1F3D] text-white border-t border-white/10 pt-16 md:pt-20 pb-8 md:pb-10">
+    <footer className="bg-[#0F1F3D] text-white border-t border-white/10 pt-16 max-[360px]:pt-28 md:pt-20 pb-8 md:pb-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 pb-14 md:pb-16 border-b border-white/10">
           {/* Brand and Description (5 cols) */}
