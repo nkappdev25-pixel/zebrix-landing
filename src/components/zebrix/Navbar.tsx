@@ -96,7 +96,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="flex items-center gap-2 sm:gap-3">
             {/* Language Selector */}
             <div
-              className="flex items-center bg-[#0F1F3D]/[0.04] p-0.5 rounded-full border border-black/[0.06]"
+               className="hidden sm:flex items-center bg-[#0F1F3D]/[0.04] p-0.5 rounded-full border border-black/[0.06]"
               role="group"
               aria-label="Language selection"
             >
@@ -130,7 +130,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               type="button"
               onClick={() => window.open('https://app.zebrixgen.com', '_blank')}
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold bg-[#4F46E5] hover:bg-[#3730A3] active:bg-[#312E81] text-white px-4 py-2 sm:px-4.5 sm:py-2 rounded-full shadow-xs hover:shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4F46E5] focus-visible:ring-offset-2"
+               className="inline-flex items-center gap-1.5 whitespace-nowrap text-xs sm:text-sm font-semibold bg-[#4F46E5] hover:bg-[#3730A3] active:bg-[#312E81] text-white px-4 py-2 sm:px-4.5 sm:py-2 rounded-full shadow-xs hover:shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4F46E5] focus-visible:ring-offset-2"
             >
               <span>{t.signIn}</span>
               <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />

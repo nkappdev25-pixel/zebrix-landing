@@ -84,7 +84,7 @@ function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F6F8FD] text-[#0F1F3D] font-sans antialiased flex flex-col selection:bg-[#4F46E5] selection:text-white">
+    <div className="zebrix-page min-h-screen bg-[#F6F8FD] text-[#0F1F3D] font-sans antialiased flex flex-col selection:bg-[#4F46E5] selection:text-white">
       <Navbar
         lang={lang}
         onLanguageChange={setLang}

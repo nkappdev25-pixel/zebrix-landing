@@ -19,30 +19,30 @@ export const Footer: React.FC<FooterProps> = ({
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#0F1F3D] text-white border-t border-white/10 pt-16 pb-12">
+    <footer className="bg-[#0F1F3D] text-white border-t border-white/10 pt-16 max-[360px]:pt-28 md:pt-20 pb-8 md:pb-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 pb-14 md:pb-16 border-b border-white/10">
           {/* Brand and Description (5 cols) */}
-          <div className="md:col-span-5 space-y-4">
+          <div className="lg:col-span-4 space-y-5">
             <ZebrixLogo isDark size="md" />
-            <p className="text-xs sm:text-sm text-white/70 max-w-sm leading-relaxed">
+            <p className="text-sm text-white/70 max-w-sm leading-relaxed">
               {t.productLine}
             </p>
 
             {/* Concise Medical Line Notice */}
-            <div className="p-3 rounded-xl bg-white/[0.05] border border-white/10 flex items-start gap-2.5 text-xs text-white/75 max-w-md">
+            <div className="p-4 rounded-lg bg-white/[0.05] border border-white/10 flex items-start gap-3 text-xs leading-relaxed text-white/75 max-w-md">
               <ShieldAlert className="w-4 h-4 text-[#B54708] shrink-0 mt-0.5" />
               <span>{t.medicalLine}</span>
             </div>
           </div>
 
           {/* Navigation Category Links (7 cols) */}
-          <div className="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-6 text-xs sm:text-sm">
-            <div className="space-y-3">
+          <nav className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-x-8 gap-y-10 text-sm" aria-label="Footer navigation">
+            <div className="space-y-5">
               <span className="text-xs font-bold uppercase tracking-wider text-[#14B8A6]">
                 Nawigacja
               </span>
-              <ul className="space-y-2 text-white/70">
+              <ul className="space-y-3 text-white/70 leading-snug">
                 <li>
                   <a href="#context" className="hover:text-white transition-colors">
                     {t.about}
@@ -66,11 +66,11 @@ export const Footer: React.FC<FooterProps> = ({
               </ul>
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-5">
               <span className="text-xs font-bold uppercase tracking-wider text-[#14B8A6]">
                 Zasoby
               </span>
-              <ul className="space-y-2 text-white/70">
+              <ul className="space-y-3 text-white/70 leading-snug">
                 <li>
                   <a href="#knowledge" className="hover:text-white transition-colors">
                     {t.centres}
@@ -94,11 +94,11 @@ export const Footer: React.FC<FooterProps> = ({
               </ul>
             </div>
 
-            <div className="space-y-3">
+            <div className="col-span-2 sm:col-span-1 space-y-5 pt-7 border-t border-white/10 sm:pt-0 sm:border-t-0">
               <span className="text-xs font-bold uppercase tracking-wider text-[#14B8A6]">
                 Bezpieczeństwo
               </span>
-              <ul className="space-y-2 text-white/70">
+              <ul className="space-y-3 text-white/70 leading-snug">
                 <li>
                   <button
                     type="button"
@@ -124,14 +124,14 @@ export const Footer: React.FC<FooterProps> = ({
                 </li>
               </ul>
             </div>
-          </div>
+          </nav>
         </div>
 
         {/* Bottom bar with Language Switcher and Copyright */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/50">
+        <div className="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 text-xs text-white/60">
           <p>© {currentYear} Zebrix. {t.allRights}</p>
 
-          <div className="flex items-center gap-3">
+           <div className="flex items-center gap-3 flex-wrap">
             <span className="flex items-center gap-1 text-white/60">
               <Globe className="w-3.5 h-3.5" />
               <span>Język / Language:</span>
