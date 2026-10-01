@@ -36,25 +36,25 @@ export const Hero: React.FC<HeroProps> = ({
       <HeroDnaAnimation />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Editorial Column (Left 7 cols on large desktop) */}
-          <div className="lg:col-span-6 xl:col-span-6 space-y-6">
+          <div className="lg:col-span-7 space-y-7">
             {/* Eyebrow badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#E7ECFB] border border-[#4F46E5]/15 text-[#4F46E5] text-xs font-semibold tracking-wide">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#4F46E5] animate-pulse" />
+            <div className="inline-flex items-center gap-3 text-zebrix-indigo text-xs font-bold uppercase">
+              <span className="w-8 h-px bg-zebrix-indigo" />
               <span>{t.eyebrow}</span>
             </div>
 
             {/* H1 Title */}
             <h1
               id="hero-heading"
-              className="text-4xl sm:text-5xl lg:text-5xl font-bold text-[#0F1F3D] leading-[1.12] text-balance"
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-zebrix-navy leading-[1.12] text-balance max-w-3xl"
             >
               {t.title}
             </h1>
 
             {/* Lead text */}
-            <p className="text-base sm:text-lg text-[#0F1F3D]/75 leading-relaxed max-w-2xl">
+            <p className="text-base sm:text-lg text-zebrix-navy/75 leading-relaxed max-w-xl">
               {t.lead}
             </p>
 
@@ -87,7 +87,7 @@ export const Hero: React.FC<HeroProps> = ({
           </div>
 
 {/* High-Fidelity Real Product Composition (Right 6 cols) */}
-           <div className="lg:col-span-6 xl:col-span-6 relative">
+           <div className="lg:col-span-5 relative">
              {/* Ambient decorative single-stroke background trace */}
              <div
                className="absolute -top-6 -right-6 w-full h-full border border-[#4F46E5]/10 rounded-3xl pointer-events-none -z-10 max-w-lg lg:max-w-none"

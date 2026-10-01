@@ -34,7 +34,7 @@ export const ZebrixLogo: React.FC<ZebrixLogoProps> = ({
       />
 
       <span
-        className={`font-bold tracking-tight leading-none ${currentSize.text} ${
+        className={`zebrix-wordmark font-bold leading-none ${currentSize.text} ${
           isDark ? 'text-white' : 'text-[#0F1F3D]'
         }`}
       >

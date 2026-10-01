@@ -15,12 +15,15 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const t = translations[lang].nav;
   const [isScrolled, setIsScrolled] = useState(false);
+  const [footerInView, setFooterInView] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('');
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 24);
+      const footer = document.querySelector('footer');
+      setFooterInView(Boolean(footer && footer.getBoundingClientRect().top < window.innerHeight * 0.75));
 
       // Section spy
       const sections = ['context', 'journey', 'knowledge', 'safety'];
@@ -50,7 +53,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <>
       <header
-        className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 pt-3 sm:pt-4 transition-all duration-300 pointer-events-none"
+        className={`fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 pt-3 sm:pt-4 transition-all duration-300 pointer-events-none ${footerInView ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'}`}
         role="banner"
       >
         <div
