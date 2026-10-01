@@ -183,3 +183,42 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Zebrix editorial rhythm: keep headings and section spacing consistent. */
+.zebrix-page main > section:not(:first-child) {
+  padding-block: 4.5rem;
+  scroll-margin-top: 6rem;
+}
+
+.zebrix-page main h1,
+.zebrix-page main h2 {
+  text-wrap: balance;
+}
+
+.zebrix-page main h2 {
+  font-size: 1.875rem;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.zebrix-page main > section p {
+  line-height: 1.65;
+}
+
+@media (min-width: 640px) {
+  .zebrix-page main h2 {
+    font-size: 2.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .zebrix-page main > section:not(:first-child) {
+    padding-block: 6rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .zebrix-page main h2 {
+    font-size: 2.5rem;
+  }
+}
