@@ -49,8 +49,10 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: META.pl.title },
       { property: "og:description", content: META.pl.description },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://zebrixgen.com/" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://zebrixgen.com/" }],
   }),
   component: LandingPage,
 });
